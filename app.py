@@ -101,6 +101,12 @@ def on_join(data):
         online[room] = {}
     online[room][request.sid] = username
 
+    # Track user in Supabase
+    try:
+        storage.upsert_user(username, room, True)
+    except Exception as e:
+        print(f"Failed to upsert user: {e}")
+
     # Send message history to this client only
     history = storage.get_messages(room)
     emit("history", history)
@@ -124,6 +130,13 @@ def on_disconnect():
     for room, users in list(online.items()):
         if sid in users:
             username = users.pop(sid)
+            
+            # Update user in Supabase to offline
+            try:
+                storage.upsert_user(username, room, False)
+            except Exception as e:
+                print(f"Failed to upsert user: {e}")
+                
             emit(
                 "user_left",
                 {"username": username, "online_users": list(users.values())},

@@ -132,3 +132,32 @@ def mark_seen(room: str, up_to_ts: float, reader: str) -> None:
                     requests.patch(update_url, headers=HEADERS, json={"seen": True}, timeout=5)
         except Exception as e:
             print(f"Error marking seen: {e}")
+
+def upsert_user(username: str, room: str, is_online: bool) -> None:
+    """Insert or update a user's online status and last active timestamp in Supabase."""
+    if not SUPABASE_URL or not SUPABASE_KEY:
+        return
+        
+    try:
+        url = f"{SUPABASE_URL}/rest/v1/users?on_conflict=username,room"
+        data = {
+            "username": username,
+            "room": room,
+            "is_online": is_online,
+            "last_active": "now()"  # PostgREST handles now() on timestamp columns if mapped properly, 
+                                    # but safer to just omit it and let default handle, 
+                                    # or we can let Postgres handle it. Actually, for update, we need to pass a timestamp.
+        }
+        
+        # Let's get current ISO timestamp
+        import datetime
+        now = datetime.datetime.now(datetime.timezone.utc).isoformat()
+        data["last_active"] = now
+        
+        # We use an upsert: POST with Prefer: resolution=merge-duplicates
+        headers = HEADERS.copy()
+        headers["Prefer"] = "resolution=merge-duplicates"
+        
+        requests.post(url, headers=headers, json=data, timeout=5)
+    except Exception as e:
+        print(f"Error upserting user: {e}")
