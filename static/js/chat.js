@@ -617,7 +617,26 @@ overlay.addEventListener('click', closeSidebar);
 // ── 15. Leave room ────────────────────────────────────────────────────
 document.getElementById('btn-leave').addEventListener('click', () => {
   socket.disconnect();
-  window.location.href = '/';
+  
+  // Show an instant visual feedback overlay so the UI doesn't feel stuck
+  const overlay = document.createElement('div');
+  overlay.style.position = 'fixed';
+  overlay.style.inset = '0';
+  overlay.style.background = 'var(--bg-primary)';
+  overlay.style.zIndex = '99999';
+  overlay.style.display = 'flex';
+  overlay.style.flexDirection = 'column';
+  overlay.style.alignItems = 'center';
+  overlay.style.justifyContent = 'center';
+  overlay.style.color = 'var(--text-secondary)';
+  overlay.style.fontSize = '1.2rem';
+  overlay.style.fontWeight = '500';
+  overlay.style.animation = 'fade-in 0.2s ease forwards';
+  overlay.innerHTML = '<div style="margin-bottom:1rem; font-size:2rem;">💕</div><div>Leaving room...</div>';
+  document.body.appendChild(overlay);
+
+  // Navigate back to the home page
+  window.location.replace('/');
 });
 
 // ── 16. Copy room code ────────────────────────────────────────────────
