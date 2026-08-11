@@ -73,7 +73,51 @@
   --bubble-sent-from: #d4177b;
   --bubble-sent-to:   #f5337a;
   
-  --bubble-shadow:  0 2px 8px rgba(0,0,0,0.04);
+  --bubble-shadow:  0 2px 8px rgba(0,0,0,0.08);
+
+  /* Landing card override */
+  --card-bg: rgba(255, 255, 255, 0.88);
+}
+
+/* Reduce blob opacity in light mode so they don't overpower the cream bg */
+.light-theme .blob {
+  opacity: 0.10;
+}
+
+/* Light mode field and input overrides */
+.light-theme .field-wrapper {
+  background: #f9f6f1;
+  border-color: rgba(0,0,0,0.12);
+}
+
+.light-theme .field-input {
+  color: #2d242a;
+}
+
+.light-theme .field-input::placeholder {
+  color: #8a7b85;
+}
+
+/* Sidebar light mode */
+.light-theme .sidebar {
+  box-shadow: 2px 0 12px rgba(0,0,0,0.06);
+}
+
+/* Message area in light mode */
+.light-theme .messages-area {
+  background: var(--bg-base);
+}
+
+/* Input wrap light mode */
+.light-theme .input-wrap {
+  background: #f5f0e6;
+  border-color: rgba(0,0,0,0.12);
+}
+
+/* Date separator in light mode */
+.light-theme .date-separator-text {
+  background: var(--bg-elevated);
+  color: var(--text-muted);
 }
 
 html, body {
