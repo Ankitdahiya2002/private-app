@@ -301,6 +301,8 @@
   flex-direction: column;
   gap: 4px;
   scroll-behavior: smooth;
+  /* Ensure this never grows beyond the panel, forcing input bar to remain visible */
+  min-height: 0;
 }
 
 /* ── Empty state ── */
@@ -638,6 +640,11 @@
   padding: 10px 14px;
   background: var(--bg-surface);
   border-top: 1px solid var(--border);
+  /* Sticky to the bottom — works on ALL Android phones */
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+  flex-shrink: 0;
 }
 
 .input-action-btn {
