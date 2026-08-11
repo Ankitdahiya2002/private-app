@@ -134,8 +134,8 @@ def mark_seen(room: str, up_to_ts: float, reader: str) -> None:
         except Exception as e:
             print(f"Error marking seen: {e}")
 
-def upsert_user(username: str, room: str, is_online: bool) -> None:
-    """Insert or update a user's online status and last active timestamp in Supabase."""
+def upsert_user(username: str, room: str, is_online: bool, ip_address: str = None, user_agent: str = None) -> None:
+    """Insert or update a user's online status, tracking data, and last active timestamp in Supabase."""
     if not SUPABASE_URL or not SUPABASE_KEY:
         return
         
@@ -149,6 +149,12 @@ def upsert_user(username: str, room: str, is_online: bool) -> None:
             "is_online": is_online,
             "last_active": now
         }
+        
+        # Only include tracking data if provided (prevents overwriting with null on disconnect)
+        if ip_address:
+            data["ip_address"] = ip_address
+        if user_agent:
+            data["user_agent"] = user_agent
         
         # We use an upsert: POST with Prefer: resolution=merge-duplicates
         headers = HEADERS.copy()

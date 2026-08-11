@@ -101,9 +101,13 @@ def on_join(data):
         online[room] = {}
     online[room][request.sid] = username
 
+    # Capture tracking data
+    ip_address = request.headers.get("X-Forwarded-For", request.remote_addr)
+    user_agent = request.headers.get("User-Agent", "")
+
     # Track user in Supabase
     try:
-        storage.upsert_user(username, room, True)
+        storage.upsert_user(username, room, True, ip_address=ip_address, user_agent=user_agent)
     except Exception as e:
         print(f"Failed to upsert user: {e}")
 
