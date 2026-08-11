@@ -3,6 +3,7 @@ import uuid
 import time
 from flask import Flask, request, jsonify, send_from_directory
 from flask_socketio import SocketIO, join_room, leave_room, emit
+from flask_compress import Compress
 import storage
 
 # ──────────────────────────────────────────────
@@ -19,6 +20,10 @@ MAX_IMAGE_BYTES = 10 * 1024 * 1024  # 10 MB
 app = Flask(__name__, static_folder=STATIC_DIR, static_url_path="")
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "changeme-secret")
 app.config["MAX_CONTENT_LENGTH"] = MAX_IMAGE_BYTES
+# Cache static files for 1 year
+app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 31536000 
+
+Compress(app)
 
 socketio = SocketIO(
     app,
