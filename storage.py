@@ -1,5 +1,6 @@
 import os
 import requests
+import datetime
 from threading import Lock
 from dotenv import load_dotenv
 
@@ -140,19 +141,14 @@ def upsert_user(username: str, room: str, is_online: bool) -> None:
         
     try:
         url = f"{SUPABASE_URL}/rest/v1/users?on_conflict=username,room"
+        
+        now = datetime.datetime.now(datetime.timezone.utc).isoformat()
         data = {
             "username": username,
             "room": room,
             "is_online": is_online,
-            "last_active": "now()"  # PostgREST handles now() on timestamp columns if mapped properly, 
-                                    # but safer to just omit it and let default handle, 
-                                    # or we can let Postgres handle it. Actually, for update, we need to pass a timestamp.
+            "last_active": now
         }
-        
-        # Let's get current ISO timestamp
-        import datetime
-        now = datetime.datetime.now(datetime.timezone.utc).isoformat()
-        data["last_active"] = now
         
         # We use an upsert: POST with Prefer: resolution=merge-duplicates
         headers = HEADERS.copy()

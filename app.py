@@ -2,7 +2,7 @@ import os
 import uuid
 import time
 from flask import Flask, request, jsonify, send_from_directory
-from flask_socketio import SocketIO, join_room, leave_room, emit
+from flask_socketio import SocketIO, join_room, emit
 from flask_compress import Compress
 import storage
 

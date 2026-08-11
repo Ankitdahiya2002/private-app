@@ -19,6 +19,4 @@ __pycache__/
 .vscode/
 .idea/
 
-# Local database (if any)
-messages.json
-passwords.json
+
