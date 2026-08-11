@@ -11,6 +11,14 @@
   display: flex;
   overflow: hidden;
   background: var(--bg-base);
+  /* Smooth transition for all theme changes */
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Universal smooth theme transition for all children */
+.chat-body *,
+.landing-body * {
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
 }
 
 /* ================================================================
@@ -207,9 +215,7 @@
   align-items: center;
   gap: 12px;
   padding: 0 16px 0 20px;
-  background: rgba(17,17,24,0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: var(--bg-surface);
   border-bottom: 1px solid var(--border);
   z-index: 10;
 }
