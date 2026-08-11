@@ -62,7 +62,7 @@ def serve_upload(filename):
 
 @app.route("/upload", methods=["POST"])
 def upload_image():
-    """Receive a multipart image, save to disk, return its URL."""
+    """Receive a multipart image, upload to Supabase Storage, return its permanent URL."""
     if "image" not in request.files:
         return jsonify({"error": "No image field"}), 400
 
@@ -75,10 +75,17 @@ def upload_image():
 
     ext = file.filename.rsplit(".", 1)[1].lower()
     unique_name = f"{uuid.uuid4().hex}.{ext}"
-    save_path = os.path.join(UPLOAD_DIR, unique_name)
-    file.save(save_path)
+    
+    # Read the file bytes
+    file_bytes = file.read()
+    content_type = file.content_type or "application/octet-stream"
+    
+    # Upload directly to Supabase Storage
+    url = storage.upload_file(unique_name, file_bytes, content_type)
+    
+    if not url:
+        return jsonify({"error": "Failed to upload image to Supabase"}), 500
 
-    url = f"/uploads/{unique_name}"
     return jsonify({"url": url}), 200
 
 

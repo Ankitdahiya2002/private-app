@@ -24,6 +24,36 @@ def _is_configured() -> bool:
     return bool(_key() and _base())
 
 
+def upload_file(filename: str, file_bytes: bytes, content_type: str) -> str | None:
+    """Upload a file to Supabase Storage and return its public URL."""
+    if not _is_configured():
+        return None
+
+    # Path for Supabase Storage API
+    url = f"{_base()}/storage/v1/object/chat-images/{filename}"
+    key = _key()
+
+    headers = {
+        "apikey": key,
+        "Authorization": f"Bearer {key}",
+        "Content-Type": content_type
+    }
+
+    req = urllib.request.Request(url, data=file_bytes, headers=headers, method="POST")
+
+    try:
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            # If successful, return the public URL
+            public_url = f"{_base()}/storage/v1/object/public/chat-images/{filename}"
+            return public_url
+    except urllib.error.HTTPError as e:
+        print(f"Supabase Storage HTTP {e.code} on upload: {e.read().decode()}")
+        return None
+    except Exception as e:
+        print(f"Supabase Storage error on upload: {e}")
+        return None
+
+
 def _request(method: str, path: str, body: dict = None, prefer: str = None) -> dict | list | None:
     """Make a raw HTTP request to Supabase using urllib (gevent-safe)."""
     url = f"{_base()}/rest/v1/{path}"
