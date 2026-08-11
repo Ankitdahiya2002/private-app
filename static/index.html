@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LoveChat — For Tanvi 💕</title>
+  <meta name="description" content="Your private love chat with Tanvi. Just for the two of you." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/landing.css" />
+</head>
+<body class="landing-body">
+
+  <!-- Animated blobs background -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <div class="landing-wrapper">
+    <!-- Logo -->
+    <div class="landing-logo" aria-label="PrivChat logo">
+      <div class="logo-icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+          <path d="M18 32s-14-9.06-14-18.5C4 8.15 8.03 4 13 4c2.8 0 5.28 1.34 7 3.43C21.72 5.34 24.2 4 27 4c4.97 0 9 4.15 9 9.5C36 22.94 18 32 18 32Z" fill="url(#heart-grad)"/>
+          <defs>
+            <linearGradient id="heart-grad" x1="4" y1="4" x2="36" y2="32" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#ff7eb3"/>
+              <stop offset="0.5" stop-color="#ff758c"/>
+              <stop offset="1" stop-color="#ff7eb3"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <span class="logo-text">LoveChat 💕</span>
+    </div>
+
+    <!-- Card -->
+    <div class="landing-card" role="main">
+      <h1 class="card-title">Hi Tanvi, it's us 💕</h1>
+      <p class="card-subtitle">Enter your name and the same room code to be together in your private space</p>
+
+      <form id="join-form" class="join-form" novalidate>
+        <!-- Name field -->
+        <div class="field-group">
+          <label class="field-label" for="input-name">Your name</label>
+          <div class="field-wrapper">
+            <span class="field-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            </span>
+            <input
+              id="input-name"
+              type="text"
+              class="field-input"
+              placeholder="e.g. Alex"
+              maxlength="24"
+              autocomplete="off"
+              spellcheck="false"
+            />
+          </div>
+          <p class="field-error" id="err-name" role="alert" aria-live="polite"></p>
+        </div>
+
+        <!-- Room code field -->
+        <div class="field-group">
+          <label class="field-label" for="input-room">Room code</label>
+          <div class="field-wrapper">
+            <span class="field-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </span>
+            <input
+              id="input-room"
+              type="text"
+              class="field-input field-input--room"
+              placeholder="e.g. SUNSET42"
+              maxlength="12"
+              autocomplete="off"
+              spellcheck="false"
+            />
+          </div>
+          <p class="field-hint">Share this code with your friend to join the same room</p>
+          <p class="field-error" id="err-room" role="alert" aria-live="polite"></p>
+        </div>
+
+        <button id="btn-join" type="submit" class="btn-join">
+          <span class="btn-label">Join Room</span>
+          <svg class="btn-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </button>
+      </form>
+
+      <!-- Divider -->
+      <div class="divider"><span>or</span></div>
+
+      <!-- Generate random room -->
+      <button id="btn-random" type="button" class="btn-random">
+        Generate random room code
+      </button>
+    </div>
+
+    <p class="landing-footer">Private. Secure. Made with ❤️ for the two of you.</p>
+  </div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

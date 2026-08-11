@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LoveChat 💕 — </title>
+  <meta name="description" content="A private love chat space, made with love." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/chat.css" />
+</head>
+
+<body class="chat-body">
+
+  <!-- ── SIDEBAR ────────────────────────────────────── -->
+  <aside class="sidebar" id="sidebar" role="complementary" aria-label="Sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        <svg width="22" height="22" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+          <path
+            d="M18 32s-14-9.06-14-18.5C4 8.15 8.03 4 13 4c2.8 0 5.28 1.34 7 3.43C21.72 5.34 24.2 4 27 4c4.97 0 9 4.15 9 9.5C36 22.94 18 32 18 32Z"
+            fill="url(#g2)" />
+          <defs>
+            <linearGradient id="g2" x1="4" y1="4" x2="36" y2="32" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#b5006e" />
+              <stop offset=".5" stop-color="#f0256e" />
+              <stop offset="1" stop-color="#ff9ec4" />
+            </linearGradient>
+          </defs>
+        </svg>
+        <span>LoveChat 💕</span>
+      </div>
+      <button class="sidebar-toggle" id="sidebar-close-btn" aria-label="Close sidebar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round">
+          <path d="M18 6 6 18M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Me card -->
+    <div class="me-card">
+      <div class="avatar avatar--me" id="me-avatar" aria-label="Your avatar">A</div>
+      <div class="me-info">
+        <p class="me-name" id="me-name-display">You</p>
+        <p class="me-room">Room: <strong id="room-display">—</strong></p>
+      </div>
+    </div>
+
+    <!-- Online users -->
+    <div class="sidebar-section">
+      <p class="sidebar-section-title">In this room</p>
+      <ul class="online-list" id="online-list" aria-label="Online users"></ul>
+    </div>
+
+    <!-- Leave room -->
+    <button class="btn-leave" id="btn-leave" aria-label="Leave room">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round">
+        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+        <polyline points="16 17 21 12 16 7" />
+        <line x1="21" y1="12" x2="9" y2="12" />
+      </svg>
+      Leave Room
+    </button>
+  </aside>
+
+  <!-- ── CHAT PANEL ───────────────────────────────── -->
+  <main class="chat-panel" id="chat-panel">
+
+    <!-- Header -->
+    <header class="chat-header" id="chat-header">
+      <button class="header-menu-btn" id="sidebar-open-btn" aria-label="Open sidebar">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+
+      <div class="header-user" id="header-user">
+        <div class="header-avatar-wrap">
+          <div class="avatar avatar--header" id="header-avatar">?</div>
+          <span class="online-dot" id="header-online-dot" aria-hidden="true"></span>
+        </div>
+        <div class="header-meta">
+          <p class="header-name" id="header-name">Room <span id="header-room">—</span></p>
+          <p class="header-status" id="header-status">Waiting for someone to join…</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <!-- Room code copy -->
+        <button class="header-action-btn" id="btn-copy-room" title="Copy room code" aria-label="Copy room code">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" />
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Messages -->
+    <section class="messages-area" id="messages-area" aria-label="Chat messages" aria-live="polite">
+
+      <!-- ♥ Tanvi Dedication Card — always pinned at top ♥ -->
+      <div class="dedication-card" id="dedication-card" aria-label="Dedication to Tanvi">
+        <div class="dedication-hearts" aria-hidden="true">
+          <span class="dh dh-1">❤️</span>
+          <span class="dh dh-2">🌸</span>
+          <span class="dh dh-3">💕</span>
+          <span class="dh dh-4">✨</span>
+          <span class="dh dh-5">🌹</span>
+        </div>
+        <div class="dedication-body">
+          <p class="dedication-for">A private space made just for</p>
+          <h2 class="dedication-name">Tanvi</h2>
+          <p class="dedication-msg">
+            Every word shared here is a piece of my heart, sent only to you.
+            This little corner of the internet belongs to us. 💞
+          </p>
+          <div class="dedication-badge">
+            <span class="dedication-lock">🔒</span>
+            Private · Just the two of us
+          </div>
+        </div>
+      </div>
+
+      <!-- Messages injected by JS -->
+      <div class="empty-state" id="empty-state">
+        <div class="empty-icon">💌</div>
+        <p class="empty-title">Say something sweet 🌹</p>
+        <p class="empty-sub">Your first message is waiting to be sent…</p>
+      </div>
+    </section>
+
+    <!-- Typing indicator -->
+    <div class="typing-bar" id="typing-bar" aria-live="polite" aria-atomic="true" style="display:none;">
+      <div class="typing-bubble">
+        <span class="typing-dot"></span>
+        <span class="typing-dot"></span>
+        <span class="typing-dot"></span>
+      </div>
+      <span class="typing-label" id="typing-label"></span>
+    </div>
+
+    <!-- Emoji Picker Panel (lives just above input bar) -->
+    <div class="emoji-panel" id="emoji-panel" role="dialog" aria-label="Emoji picker" style="display:none;">
+      <!-- Category tabs -->
+      <div class="emoji-tabs" id="emoji-tabs" role="tablist"></div>
+      <!-- Emoji grid -->
+      <div class="emoji-grid" id="emoji-grid" role="listbox" aria-label="Emojis"></div>
+    </div>
+
+    <!-- Input bar -->
+    <footer class="input-bar" id="input-bar">
+      <!-- Image upload -->
+      <button class="input-action-btn" id="btn-image" title="Send image" aria-label="Attach image">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round">
+          <rect x="3" y="3" width="18" height="18" rx="2" />
+          <circle cx="8.5" cy="8.5" r="1.5" />
+          <polyline points="21 15 16 10 5 21" />
+        </svg>
+      </button>
+      <input type="file" id="file-input" accept="image/*" style="display:none;" aria-hidden="true" />
+
+      <!-- Emoji button -->
+      <button class="input-action-btn" id="btn-emoji" title="Emoji" aria-label="Open emoji picker"
+        aria-expanded="false">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+          <line x1="9" y1="9" x2="9.01" y2="9" />
+          <line x1="15" y1="9" x2="15.01" y2="9" />
+        </svg>
+      </button>
+
+      <!-- Text input -->
+      <div class="input-wrap">
+        <textarea id="msg-input" class="msg-input" placeholder="Say something sweet…" rows="1" maxlength="2000"
+          aria-label="Type a message"></textarea>
+      </div>
+
+      <!-- Send button -->
+      <button class="btn-send" id="btn-send" title="Send" aria-label="Send message" disabled>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13" />
+          <polygon points="22 2 15 22 11 13 2 9 22 2" />
+        </svg>
+      </button>
+    </footer>
+  </main>
+
+  <!-- ── IMAGE LIGHTBOX ────────────────────────────── -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" style="display:none;">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close image viewer">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+        stroke-linecap="round">
+        <path d="M18 6 6 18M6 6l12 12" />
+      </svg>
+    </button>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="Full-size image" />
+  </div>
+
+  <!-- ── CONTEXT MENU ──────────────────────────────── -->
+  <div class="context-menu" id="context-menu" role="menu" style="display:none;">
+    <button class="ctx-item" id="ctx-copy" role="menuitem">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round">
+        <rect x="9" y="9" width="13" height="13" rx="2" />
+        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+      </svg>
+      Copy text
+    </button>
+    <button class="ctx-item" id="ctx-delete-me" role="menuitem">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round">
+        <polyline points="3 6 5 6 21 6" />
+        <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
+        <path d="M10 11v6" />
+        <path d="M14 11v6" />
+      </svg>
+      Delete for me
+    </button>
+    <button class="ctx-item ctx-item--danger" id="ctx-delete-all" role="menuitem">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round">
+        <polyline points="3 6 5 6 21 6" />
+        <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
+      </svg>
+      Delete for everyone
+    </button>
+  </div>
+
+  <!-- ── TOAST ─────────────────────────────────────── -->
+  <div class="toast-container" id="toast-container" aria-live="assertive" aria-atomic="true"></div>
+
+  <!-- Socket.IO client -->
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="/js/chat.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+/* ================================================================
+   GLOBAL DESIGN TOKENS & RESETS
+   ================================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* ── Palette (Romantic Love Theme) ── */
+  --bg-base:        #0d0810;
+  --bg-surface:     #130d16;
+  --bg-elevated:    #1e1525;
+  --bg-hover:       #271c30;
+  --border:         rgba(255,150,180,0.08);
+  --border-strong:  rgba(255,150,180,0.15);
+
+  /* Brand gradient — Rose / Pink / Deep Love */
+  --grad-brand: linear-gradient(135deg, #b5006e 0%, #e8176c 35%, #ff5e8f 65%, #ffb3c6 100%);
+  --grad-sent:  linear-gradient(135deg, #c0006e 0%, #f0256e 50%, #ff6b9d 100%);
+  --grad-avatar:linear-gradient(135deg, #b5006e, #ff6b9d);
+
+  /* Accent */
+  --accent:     #f0256e;
+  --accent-dim: rgba(240,37,110,0.15);
+  --accent2:    #ff9ec4;
+
+  /* Status */
+  --online:  #00d46a;
+  --danger:  #ff4757;
+  --warning: #ffa502;
+
+  /* Text */
+  --text-primary:   #fdf0f5;
+  --text-secondary: #9a8898;
+  --text-muted:     #5c4a58;
+  --text-white:     #ffffff;
+
+  /* Bubble colours */
+  --bubble-sent-from: #b5006e;
+  --bubble-sent-to:   #f0256e;
+  --bubble-recv:      #1e1528;
+
+  /* Sizing */
+  --sidebar-w: 270px;
+  --header-h:  64px;
+  --input-h:   68px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 32px;
+
+  /* Transitions */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background: var(--bg-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+input, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+a { color: inherit; text-decoration: none; }
+
+ul { list-style: none; }
+
+/* Scrollbar */
+::-webkit-scrollbar        { width: 4px; height: 4px; }
+::-webkit-scrollbar-track  { background: transparent; }
+::-webkit-scrollbar-thumb  { background: var(--border-strong); border-radius: 99px; }
+
+/* Selection */
+::selection { background: rgba(240,37,110,0.35); }
