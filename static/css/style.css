@@ -114,7 +114,24 @@
   border-color: rgba(0,0,0,0.12);
 }
 
-/* Date separator in light mode */
+/* Light mode: ensure all text elements are dark and readable */
+.light-theme .header-name,
+.light-theme .me-name,
+.light-theme .online-item-name,
+.light-theme .msg-sender,
+.light-theme .bubble-text,
+.light-theme .msg-input,
+.light-theme .field-label,
+.light-theme .card-subtitle,
+.light-theme .field-hint {
+  color: var(--text-primary);
+}
+
+.light-theme .msg-input::placeholder {
+  color: var(--text-muted);
+}
+
+/* Date separator text in light mode */
 .light-theme .date-separator-text {
   background: var(--bg-elevated);
   color: var(--text-muted);
