@@ -483,6 +483,7 @@
   line-height: 1.55;
   word-break: break-word;
   cursor: pointer;
+  box-shadow: var(--bubble-shadow, none);
   transition: filter 0.15s;
 }
 .bubble:hover { filter: brightness(1.08); }
